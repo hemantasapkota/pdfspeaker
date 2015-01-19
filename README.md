@@ -1,7 +1,7 @@
 ## PdfSpeaker  (Experimental) (MacOnly) ##
 Start listening to your pdf files (experimental). For now, text files.
 
-PdfSpeaker utilises the native text-to-speech functionality
+PdfSpeaker utilises mac osx's native text-to-speech functionality
 to read aloud pdf/text files. The pdf-to-text conversion feature isn't
 ready yet.
 
