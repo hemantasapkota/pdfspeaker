@@ -1,17 +1,21 @@
 ## PdfSpeaker  (Experimental) (MacOnly) ##
 Start listening to your pdf files (experimental). For now, text files.
 
-PdfSpeaker utilises the native text-to-speech functionality
+PdfSpeaker utilises mac osx's native text-to-speech functionality
 to read aloud pdf/text files. The pdf-to-text conversion feature isn't
 ready yet.
 
 ![SS](ss.png)
 
 ## How to Build ##
-` git clone https://github.com/hemantasapkota/pdfspeaker.git
-  cd src
-  chmod +x buildRun.sh
-  ./buildRun.sh`
+```
+git clone https://github.com/hemantasapkota/pdfspeaker.git
+cd src
+npm install
+bower install
+chmod +x buildRun.sh
+./buildRun.sh
+```
 
 ## Technologies ##
 * [Node Webkit ( Now known as nw.js )](https://github.com/nwjs/nw.js/)
