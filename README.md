@@ -8,10 +8,14 @@ ready yet.
 ![SS](ss.png)
 
 ## How to Build ##
-` git clone https://github.com/hemantasapkota/pdfspeaker.git
-  cd src
-  chmod +x buildRun.sh
-  ./buildRun.sh`
+```
+git clone https://github.com/hemantasapkota/pdfspeaker.git
+cd src
+npm install
+bower install
+chmod +x buildRun.sh
+./buildRun.sh
+```
 
 ## Technologies ##
 * [Node Webkit ( Now known as nw.js )](https://github.com/nwjs/nw.js/)
