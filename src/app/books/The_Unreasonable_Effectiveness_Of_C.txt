@@ -1,0 +1,198 @@
+The Unreasonable Effectiveness of C - Damien Katz
+
+For years I've tried my damnedest to get away from C. Too simple, too many
+details to manage, too old and crufty, too low level. I've had intense and
+torrid love affairs with Java, C++, and Erlang. I've built things I'm proud of
+with all of them, and yet each has broken my heart. They've made promises they
+couldn't keep, created cultures that focus on the wrong things, and made
+devastating tradeoffs that eventually make you suffer painfully. And I keep
+crawling back to C.
+
+C is the total package. It is the only language that's highly productive,
+extremely fast, has great tooling everywhere, a large community, a highly
+professional culture, and is truly honest about its tradeoffs.
+
+Other languages can get you to a working state faster, but in the long run,
+when performance and reliability are important, C will save you time and
+headaches. I'm painfully learning that lesson once again.
+
+Simple and Expressive
+
+C is a fantastic high level language. I'll repeat that. C is a fantastic high
+level language. It's not as high level as Java or C#, and certainly no where
+near as high level as Erlang, Python, or Javascript. But it's as high level as
+C++, and far far simpler. Sure C++ offers more abstraction, but it doesn't
+present a high level of abstraction away from C. With C++ you still have to
+know everything you knew in C, plus a bunch of other ridiculous shit.
+
+"When someone says: 'I want a programming language in which I need only say
+what I wish done', give him a lollipop."
+- Alan J. Perlis
+
+That we have a hard time thinking of lower level languages we'd use instead of
+C isn't because C is low level. It's because C is so damn successful as an
+abstraction over the underlying machine and making that high level, it's made
+most low level languages irrelevant. C is that good at what it does.
+
+The syntax and semantics of C is amazingly powerful and expressive. It makes it
+easy to reason about high level algorithms and low level hardware at the same
+time. Its semantics are so simple and the syntax so powerful it lowers the
+cognitive load substantially, letting the programmer focus on what's important.
+
+It's blown everything else away to the point it's moved the bar and redefined
+what we think of as a low level language. That's damn impressive.
+
+Simpler Code, Simpler Types
+
+C is a weak, statically typed language and its type system is quite simple.
+Unlike C++ or Java, you don't have classes where you define all sorts of new
+runtime behaviors of types. You are pretty much limited to structs and unions
+and all callers must be very explicit about how they use the types, callers get
+very little for free.
+
+"You wanted a banana but what you got was a gorilla holding the banana and the
+entire jungle."
+- Joe Armstrong
+
+What sounds like a weakness ends up being a virtue: the "surface area" of C
+APIs tend to be simple and small. Instead of massive frameworks, there is a
+strong tendency and culture to create small libraries that are lightweight
+abstractions over simple types.
+
+Contrast this to OO languages where codebases tend to evolve massive
+interdependent interfaces of complex types, where the arguments and return
+types are more complex types and the complexity is fractal, each type is a
+class defined in terms of methods with arguments and return types or more
+complex return types.
+
+It's not that OO type systems force fractal complexity to happen, but they
+encourage it, they make it easier to do the wrong thing. C doesn't make it
+impossible, but it makes it harder. C tends to breed simpler, shallower types
+with fewer dependencies that are easier to understand and debug.
+
+Speed King
+
+C is the fastest language out there, both in micro and in full stack
+benchmarks. And it isn't just the fastest in runtime, it's also consistently
+the most efficient for memory consumption and startup time. And when you need
+to make a tradeoff between space and time, C doesn't hide the details from you,
+it's easy to reason about both.
+
+"Trying to outsmart a compiler defeats much of the purpose of using one."
+- Kernighan & Plauger, The Elements of Programming Style
+Every time there is a claim of "near C" performance from a higher level
+language like Java or Haskell, it becomes a sick joke when you see the details.
+They have to do awkward backflips of syntax, use special knowledge of "smart"
+compilers and VM internals to get that performance, to the point that the
+simple expressive nature of the language is lost to strange optimizations that
+are version specific, and usually only stand up in micro-benchmarks.
+
+When you write something to be fast in C, you know why it's fast, and it
+doesn't degrade significantly with different compilers or environments the way
+different VMs will, the way GC settings can radically affect performance and
+pauses, or the way interaction of one piece of code in an application will
+totally change the garbage collection profile for the rest.
+
+The route to optimization in C is direct and simple, and when it's not, there
+are a host of profiler tools to help you understand why without having to
+understand the guts of a VM or the "sufficiently smart compiler". When using
+profilers for CPU, memory and IO, C is best at not obscuring what is really
+happening. The benchmarks, both micro and full stack, consistently prove C is
+still the king.
+
+Faster Build-Run-Debug Cycles
+
+Critically important to developer efficiency and productivity is the "build,
+run, debug" cycle. The faster the cycle is, the more interactive development
+is, and the more you stay in the state of flow and on task. C has the fastest
+development interactivity of any mainstream statically typed language.
+
+"Optimism is an occupational hazard of programming; feedback is the treatment."
+- Kent Beck
+
+Because the build, run, debug cycle is not a core feature of a language, it's
+more about the tooling around it, this cycle is something that tends to be
+overlooked. It's hard to overstate the importance of the cycle for
+productivity. Sadly it's something that gets left out of most programming
+language discussions, where the focus tends to be only on lines of code and
+source writability/readability. The reality is the tooling and interactivity
+cycle of C is the fastest of any comparable language.
+
+Ubiquitous Debuggers and Useful Crash Dumps
+
+For pretty much any system you'd ever want to port to, there are readily
+available C debuggers and crash dump tools. These are invaluable to quickly
+finding the source of problems. And yes, there will be problems.
+
+"Error, no keyboard -- press F1 to continue."
+With any other language there might not be a usable debugger available and less
+likely a useful crash dump tool, and there is a really good chance for any
+heavy lifting you are interfacing with C code anyway. Now you have to debug the
+interface between the other language and the C code, and you often lose a ton
+of context, making it a cumbersome, error prone process, and often completely
+useless in practice.
+
+With pure C code, you can see call stacks, variables, arguments, thread locals,
+globals, basically everything in memory. This is ridiculously helpful
+especially when you have something that went wrong days into a long running
+server process and isn't otherwise reproducible. If you lose this context in a
+higher level language, prepare for much pain.
+
+Callable from Anywhere
+
+C has a standardized application binary interface (ABI) that is supported by
+every OS, language and platform in existence. And it requires no runtime or
+other inherent overhead. This means the code you write in C isn't just valuable
+to callers from C code, but to every conceivable library, language and
+environment in existence.
+
+"Portability is a result of few concepts and complete definition"
+- J. Palme
+
+You can use C code in standalone executables, scripting languages, kernel code,
+embedded code, as a DLL, even callable from SQL. It's the Lingua Franca of
+systems programming and pluggable libraries. If you want to write something
+once and have it usable from the most environments and use cases possible, C is
+the only sane choice.
+
+Yes. It has Flaws
+
+There are many "flaws" in C. It has no bounds checking, it's easy to corrupt
+anything in memory, there are dangling pointers and memory/resource leaks,
+bolted-on support for concurrency, no modules, no namespaces. Error handling
+can be painfully cumbersome and verbose. It's easy to make a whole class of
+errors where the call stack is smashed and hostile inputs take over your
+process. Closures? HA!
+
+"When all else fails, read the instructions."
+- L. Lasellio
+
+Its flaws are very very well known, and this is a virtue. All languages and
+implementations have gotchas and hangups. C is just far more upfront about it.
+And there are a ton of static and runtime tools to help you deal with the most
+common and dangerous mistakes. That some of the most heavily used and reliable
+software in the world is built on C is proof that the flaws are overblown, and
+easy to detect and fix.
+
+At Couchbase we recently spent easily 2+ man/months dealing with a crash in the
+Erlang VM. We wasted a ton of time tracking down something that was in the core
+Erlang implementation, never sure what was happening or why, thinking perhaps
+the flaw was something in our own plug-in C code, hoping it was something we
+could find and fix. It wasn't, it was a race condition bug in core Erlang. We
+only found the problem via code inspection of Erlang. This is a fundamental
+problem in any language that abstracts away too much of the computer.
+
+Initially for performance reasons, we started increasingly rewriting more of
+the Couchbase code in C, and choosing it as the first option for more new
+features. But amazingly it's proven much more predictable when we'll hit issues
+and how to debug and fix them. In the long run, it's more productive.
+
+I always have it in the back of my head that I want to make a slightly better
+C. Just to clean up some of the rough edges and fix some of the more egregious
+problems. But getting everything to fit, top to bottom, syntax, semantics,
+tooling, etc., might not be possible or even worth the effort. As it stands
+today, C is unreasonably effective, and I don't see that changing any time
+soon.
+
+Follow me on Twitter for more of my coding opinions and updates on Couchbase
+progress.
